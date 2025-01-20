@@ -19,7 +19,7 @@ public class Book {
         return title;
     }
 
-    public String getauthor() {
+    public String getAuthor() {
         return author;
     }
 
@@ -36,7 +36,7 @@ public class Book {
         this.title = title;
     }
 
-    public void setauthor(String author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 

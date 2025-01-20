@@ -3,6 +3,7 @@ package Main;
 import Book.Book;
 import UI.Menu;
 import Library.Library;
+import User.User;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,11 +15,28 @@ public class Main {
         library.addBook(book1);
         library.addBook(book2);
 
+        /* 
         System.out.println("-- -- List of books -- --");
         for (Book book : library.getListOfBooks()) {
             System.out.println(book);
         }
+        */
 
+        // ----------------------------
+
+        User user = new User("Andres", "a01");
+
+        Book book3 = new Book("El señor de los anillos","J. R. R.Tolkien", "2468-70", true);
+
+        user.addBorrowedBook(book2);
+        user.addBorrowedBook(book3);
+        user.removeBorrowedBook(book2);
+
+        /* Comment */
+        // System.out.println(user.getListOfBorrowedBooks());
+        for (Book book : user.getListOfBorrowedBooks()) {
+            System.out.println(book);
+        }
     }
     
 }
