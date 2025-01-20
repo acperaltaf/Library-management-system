@@ -2,25 +2,25 @@ package Book;
 
 public class Book {
     private String title;
-    private String autor;
+    private String author;
     private String isbn;
     private boolean isAvailable;
 
     // Constructor
-    public Book(String title, String autor, String isbn, boolean isAvailable) {
+    public Book(String title, String author, String isbn, boolean isAvailable) {
         this.title = title;
-        this.autor = autor;
+        this.author = author;
         this.isbn = isbn;
         this.isAvailable = isAvailable;
     }
-    
+
     // Getters
     public String getTitle() {
         return title;
     }
 
-    public String getAutor() {
-        return autor;
+    public String getauthor() {
+        return author;
     }
 
     public String getIsbn() {
@@ -30,14 +30,14 @@ public class Book {
     public boolean getIsAvailable() {
         return isAvailable;
     }
-    
+
     // Setters
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setauthor(String author) {
+        this.author = author;
     }
 
     public void setIsbn(String isbn) {
@@ -46,8 +46,13 @@ public class Book {
 
     public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
-    }    
+    }
 
-    
-// End of class Book
+    // Override toString()
+    @Override 
+    public String toString() { 
+        return "Book\n[Title = " + title + ", \nAuthor = " + author + ", \nISBN = " + isbn + ", \nAvailable = " + isAvailable + "]\n";
+    }
+
+    // End of class Book
 }

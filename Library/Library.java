@@ -22,6 +22,9 @@ public class Library {
         this.listOfBooks = listOfBooks;
     }
 
-    
+    // Method to add a book to the library
+    public void addBook(Book book) {
+        this.listOfBooks.add(book);
+    }
     
 }
