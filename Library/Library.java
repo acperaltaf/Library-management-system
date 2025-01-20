@@ -43,6 +43,25 @@ public class Library {
     
     // Method to lend books
     public void lendBook(String isbn, String userId) {
-        // Poner la lógica del método
+        // Search for the book by its isbn
+        for (Book book : listOfBooks) {
+            if (book.getIsbn().equals(isbn) && book.getIsAvailable()) {
+                for ( User user : listOfUsers) {
+                    if (user.getID().equals(userId)) {
+                        // Lend the book and mark it as unavailable
+                        book.setIsAvailable(false);
+                        user.addBorrowedBook(book);
+                        System.out.println("Book borrowed to " + user.getNombre());
+                        return;
+                    }
+                } 
+                System.out.println("User not found");
+                return;
+            } else {
+                System.out.println("Book not found or not available");
+                return;
+            }
+        }
+        System.out.println("Book not found");
     }
 }

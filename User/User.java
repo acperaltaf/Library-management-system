@@ -19,7 +19,7 @@ public class User {
     public User(String nombre, String ID) {
         this.nombre = nombre;
         this.ID = ID;
-        this.listOfBorrowedBooks = new ArrayList<>()
+        this.listOfBorrowedBooks = new ArrayList<>();
     }
 
     // Getters
