@@ -49,17 +49,22 @@ public class Library {
                 if (book.getIsAvailable()) { // Check if the book is available
                     for ( User user : listOfUsers) {
                         if (user.getID().equals(userId)) {
-                            // Lend the book and mark it as unavailable
-                            book.setIsAvailable(false);
-                            user.addBorrowedBook(book);
-                            System.out.println("Book borrowed to " + user.getName());
-                            return;
+                            if (user.getListOfBorrowedBooks().size() < 3) {
+                                // Lend the book and mark it as unavailable
+                                book.setIsAvailable(false);
+                                user.addBorrowedBook(book);
+                                System.out.println("Book borrowed to " + user.getName());
+                                return;
+                            } else {
+                                System.out.println("User has reached the maximum number of borrowed books");
+                                return;
+                            }
                         }
                     } 
                     System.out.println("User not found");
                     return;
                 } else {
-                    System.out.println("book not available");
+                    System.out.println("Book not available");
                     return;
                 }
             } 
