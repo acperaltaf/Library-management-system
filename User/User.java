@@ -4,27 +4,27 @@ import java.util.ArrayList;
 import Book.Book;
 
 public class User {
-    String nombre;
+    String name;
     String ID;
     ArrayList<Book> listOfBorrowedBooks = new ArrayList<>();
 
     // Contructor whit list of borrowed books
-    public User(String nombre, String ID, ArrayList<Book> listOfBorrowedBooks) {
-        this.nombre = nombre;
+    public User(String name, String ID, ArrayList<Book> listOfBorrowedBooks) {
+        this.name = name;
         this.ID = ID;
         this.listOfBorrowedBooks = listOfBorrowedBooks;
     }
 
     // Contructor whitout the list of borrowed books
-    public User(String nombre, String ID) {
-        this.nombre = nombre;
+    public User(String name, String ID) {
+        this.name = name;
         this.ID = ID;
         this.listOfBorrowedBooks = new ArrayList<>();
     }
 
     // Getters
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
     public String getID() {
@@ -36,8 +36,8 @@ public class User {
     }
     
     // Setters
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setname(String name) {
+        this.name = name;
     }
 
     public void setID(String iD) {
