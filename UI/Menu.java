@@ -17,6 +17,7 @@ public class Menu {
 
     public void showMenu() {
         System.out.println("""
+            
                 1. Add book to library.
                 2. Register user.
                 3. Lend book.
@@ -34,28 +35,32 @@ public class Menu {
             System.out.print("Select an option: ");
             option = scanner.nextInt();
             scanner.nextLine();
-
-            switch (option) {
-                case 1: // Add book to library.
-                    addBook();
-                    break;
-                case 2: // Register user.
-                    registerUser();
-                    break;
-                case 3: // Lend book
-                    lendBook();
-                    break;
-                case 4: // Retunr book
-                    returnBook();
-                    break;
-                case 5: // Show available books
-                    library.listAvailableBooks();
-                    break;
-                case 6: // Show borrowed books
-                    library.listBorrowedBooks();
-                    break;
+            if (option < 1 || option > 7) {
+                System.out.println("Please select a valid option.");
+                continue;
             }
 
+            switch (option) {
+                    case 1: // Add book to library.
+                        addBook();
+                        break;
+                    case 2: // Register user.
+                        registerUser();
+                        break;
+                    case 3: // Lend book
+                        lendBook();
+                        break;
+                    case 4: // Retunr book
+                        returnBook();
+                        break;
+                    case 5: // Show available books
+                        library.listAvailableBooks();
+                        break;
+                    case 6: // Show borrowed books
+                        library.listBorrowedBooks();
+                        break;
+                }
+            
         } while (option != 7);
 
         // Closed the scanner
