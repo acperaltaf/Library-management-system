@@ -2,40 +2,35 @@ package Main;
 
 import Library.Library;
 import UI.Menu;
-// import Book.Book;
-// import User.User;
+import Book.Book;
+import User.User;
 
 public class Main {
     public static void main(String[] args) {
-        /*
-        Book book1 = new Book("Cien años de soledad", "Gabriel García Marquez", "123456-09", true);
-        Book book3 = new Book("El señor de los anillos","J. R. R.Tolkien", "2468-70", true);
-        Book book2 = new Book("Juego de tronos", "George R. R. Martin", "654321-90", true);
-        Book book4 = new Book("Don Quijote De La Mancha","Miguel de Cervantes Saavedra", "13579-71", true);
-        Book book5 = new Book("Cronicas de una muerte anuncida","Gabriel García Márquez", "99123-34", true);
         
-        // Instantiate the Library
-        Library library = new Library();
-        
-        // Instatiante the User
-        User user = new User("Andres", "a01");
-
-        // Add the books to the library
-        library.addBook(book1);
-        library.addBook(book2);
-        library.addBook(book3);
-        library.addBook(book4);
-        library.addBook(book5);
-        
-        // Register user in the library
-        library.registerUser(user); 
-         */
-        
+        // Instace the Library
          Library library = new Library();
-         Menu menu = new Menu(library);
 
-        //  menu.showMenu();
+        // Load test data
+        loadTestData(library);
+
+        //  Instatiate and start the menu
+        System.out.println("Welcome to the Library Management System!");
+         Menu menu = new Menu(library);
          menu.handleOption();
+         System.out.println();
+         System.out.println("Exiting the system. Have a great day!");
         
-    } // End main
+        } // End main
+
+    // Method to load test data
+    private static void loadTestData(Library library) {
+        library.addBook(new Book("Cien años de soledad", "Gabriel García Márquez", "123456-09", true));
+        library.addBook(new Book("El señor de los anillos", "J. R. R. Tolkien", "2468-70", true));
+        library.addBook(new Book("Juego de tronos", "George R. R. Martin", "654321-90", true));
+        library.addBook(new Book("Don Quijote de la Mancha", "Miguel de Cervantes Saavedra", "13579-71", true));
+        library.addBook(new Book("Crónicas de una muerte anunciada", "Gabriel García Márquez", "99123-34", true));
+
+        library.registerUser(new User("Andrés", "a01"));
+    }
 } // End Main

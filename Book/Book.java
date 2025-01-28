@@ -14,6 +14,11 @@ public class Book {
         this.isAvailable = isAvailable;
     }
 
+    // Constructor with isAvailabel = tru by default
+    public Book(String title, String author, String isbn) {
+        this(title, author, isbn, true); // By default is available
+    }
+
     // Getters
     public String getTitle() {
         return title;
@@ -33,15 +38,10 @@ public class Book {
 
     // Setters
     public void setTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be null or empty.");
+        }
         this.title = title;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
     }
 
     public void setIsAvailable(boolean isAvailable) {
@@ -51,8 +51,12 @@ public class Book {
     // Override toString()
     @Override 
     public String toString() { 
-        return "Book\n[Title = " + title + ", \nAuthor = " + author + ", \nISBN = " + isbn + ", \nAvailable = " + isAvailable + "]\n";
-    }
+        return "\nBook Details:\n"
+        + "- Title: " + title + "\n"
+        + "- Author: " + author + "\n"
+        + "- ISBN: " + isbn + "\n"
+        + "- Available: " + (isAvailable ? "Yes" : "No");
+     }
 
     // End of class Book
 }

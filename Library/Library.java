@@ -1,12 +1,13 @@
 package Library;
 
 import java.util.ArrayList;
+import java.util.List;
 import Book.Book;
 import User.User;
 
 public class Library {
-    private ArrayList<Book> listOfBooks;
-    private ArrayList<User> listOfUsers;
+    private List<Book> listOfBooks;
+    private List<User> listOfUsers;
 
     public Library() {
         this.listOfBooks = new ArrayList<>();
@@ -14,11 +15,11 @@ public class Library {
     }
 
     // Getters
-    public ArrayList<Book> getListOfBooks() {
+    public List<Book> getListOfBooks() {
         return listOfBooks;
     }
 
-    public ArrayList<User> getListOfUsers() {
+    public List<User> getListOfUsers() {
         return listOfUsers;
     }
 
@@ -40,59 +41,76 @@ public class Library {
     public void registerUser(User user) {
         this.listOfUsers.add(user);
     }
+  
+    // Method to find book by ISBN
+    private Book findBookByIsbn(String isbn) {
+        for (Book book : listOfBooks) {
+            if (book.getIsbn().equals(isbn)) {
+                return book;
+            }
+        }
+        return null;
+    }
+
+    // Method to find user by user ID
+    private User findUserById(String userId) {
+        for (User user : listOfUsers) {
+            if (user.getID().equals(userId)) {
+                return user;
+            }
+        }
+        return null;
+    }
     
     // Method to lend books
     public void lendBook(String isbn, String userId) {
-        // Search for the book by its isbn
-        for (Book book : listOfBooks) {
-            if (book.getIsbn().equals(isbn)) {
-                if (book.getIsAvailable()) { // Check if the book is available
-                    for ( User user : listOfUsers) {
-                        if (user.getID().equals(userId)) {
-                            if (user.getListOfBorrowedBooks().size() < 3) {
-                                // Lend the book and mark it as unavailable
-                                book.setIsAvailable(false);
-                                user.addBorrowedBook(book);
-                                System.out.println("Book borrowed to " + user.getName());
-                                return;
-                            } else {
-                                System.out.println("User has reached the maximum number of borrowed books");
-                                return;
-                            }
-                        }
-                    } 
-                    System.out.println("User not found");
-                    return;
-                } else {
-                    System.out.println("Book not available");
-                    return;
-                }
-            } 
+        Book book = findBookByIsbn(isbn);
+        if (book == null) {
+            System.out.println("Book not found");
+            return;
         }
-        System.out.println("Book not found");
+        if (!book.getIsAvailable()) {
+            System.out.println("Book not available");
+            return;
+        }
+        User user = findUserById(userId);
+        if (user == null) {
+            System.out.println("User not found");
+            return;
+        }
+        if (user.getListOfBorrowedBooks().size() >= 3) {
+            System.out.println("User has reached the maximum number of borrowed books");
+            return;
+        }
+        book.setIsAvailable(false);
+        user.addBorrowedBook(book);
+        System.out.println("Book borrowed to " + user.getName());
     }
+
 
     // Method for returning a book to the library
     public void returnBook(String isbn, String userId) {
-        for (Book book : listOfBooks) {
-            if(book.getIsbn().equals(isbn)) {
-                if (!book.getIsAvailable()) {
-                    for (User user : listOfUsers) {
-                        if (user.getID().equals(userId)) {
-                            book.setIsAvailable(true);
-                            user.removeBorrowedBook(book);
-                            System.out.println("Book returned by " + user.getName());
-                            return;
-                        }
-                    }
-                    System.out.println("User not found");
-                    return;
-                }
-                System.out.println("Book is already available");
-                return;
-            }
+        Book book = findBookByIsbn(isbn);
+        if (book == null) {
+            System.out.println("Book not found");
+            return;
         }
-        System.out.println("Book not found");
+        // if (!book.getIsAvailable()) {
+        //     System.out.println("Book not available");
+        //     return;
+        // }
+        User user = findUserById(userId);
+        if (user == null) {
+            System.out.println("User not found");
+            return;
+        }
+        // if (user.getListOfBorrowedBooks().size() >= 3) {
+        //     System.out.println("User has reached the maximum number of borrowed books");
+        //     return;
+        // }
+        book.setIsAvailable(true);
+        user.removeBorrowedBook(book);
+        System.out.println("Book returned by " + user.getName());
     }
 
     // Method to show available books
